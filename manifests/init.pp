@@ -86,14 +86,6 @@ class ssh (
         require => Package['openssh-server'],
     }
 
-    augeas { 'sshd_config':
-        context => '/files/etc/ssh/sshd_config',
-        changes => [
-            "set PermitRootLogin $permit_root_login",
-            "set ListenAddress $listen_address"
-        ],
-    }
-
     service { 'ssh':
         ensure      => $ensure_running,
         enable      => $ensure_enabled,
